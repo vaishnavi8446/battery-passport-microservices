@@ -2,10 +2,12 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const swaggerUi = require('swagger-ui-express');
 const logger = require('../../shared/utils/logger');
 const { connectConsumer, subscribeToTopic } = require('../../shared/utils/kafka');
 const notificationController = require('./controllers/notificationController');
 const notificationRoutes = require('./routes/notificationRoutes');
+const swaggerSpecs = require('./config/swagger');
 
 const app = express();
 const PORT = process.env.NOTIFICATION_SERVICE_PORT || 3004;
@@ -31,6 +33,12 @@ app.get('/health', (req, res) => {
     timestamp: new Date().toISOString()
   });
 });
+
+// Swagger documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs, {
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: 'Notification Service API Documentation'
+}));
 
 // API routes
 app.use('/api/notifications', notificationRoutes);

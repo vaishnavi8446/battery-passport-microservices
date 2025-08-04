@@ -4,9 +4,11 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const swaggerUi = require('swagger-ui-express');
 const logger = require('../../shared/utils/logger');
 
 const documentRoutes = require('./routes/documentRoutes');
+const swaggerSpecs = require('./config/swagger');
 
 const app = express();
 const PORT = process.env.DOCUMENT_SERVICE_PORT || 3003;
@@ -43,6 +45,12 @@ app.get('/health', (req, res) => {
     timestamp: new Date().toISOString()
   });
 });
+
+// Swagger documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs, {
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: 'Document Service API Documentation'
+}));
 
 // API routes
 app.use('/api/documents', documentRoutes);

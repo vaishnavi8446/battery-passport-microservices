@@ -16,7 +16,9 @@
     "winston": "^3.10.0",
     "dotenv": "^16.3.1",
     "kafkajs": "^2.2.4",
-    "nodemailer": "^6.9.4"
+    "nodemailer": "^6.9.4",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1",
