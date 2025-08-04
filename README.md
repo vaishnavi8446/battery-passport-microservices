@@ -18,46 +18,52 @@ This system consists of four microservices:
 - **Message Broker**: Apache Kafka
 - **Authentication**: JWT
 - **Storage**: AWS S3
-- **Containerization**: Docker & Docker Compose
-- **Testing**: Jest
+- **Testing**: Jest (API test coverage for all microservices)
 
 ## Services
 
 ### Auth Service (Port: 3001)
+
 - User registration and login
 - JWT-based authentication
 - Role-based access control (admin, user)
 - Middleware for role verification
 
 ### Battery Passport Service (Port: 3002)
+
 - CRUD operations for battery passports
 - JWT authorization
 - Kafka event emission (passport.created, passport.updated, passport.deleted)
 
 ### Document Service (Port: 3003)
+
 - File upload to S3-compatible storage
 - Document metadata management
 - JWT verification
 
 ### Notification Service (Port: 3004)
+
 - Kafka event consumption
 - Email notifications (mock implementation)
 
 ## Quick Start
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd battery-passport-microservices
    ```
 
 2. **Set up environment variables**
+
    ```bash
    cp .env.example .env
    # Edit .env with your configuration
    ```
 
 3. **Start the services**
+
    ```bash
    docker-compose up -d
    ```
@@ -73,6 +79,7 @@ This system consists of four microservices:
 ### Auth Service Endpoints
 
 #### Register User
+
 ```http
 POST /api/auth/register
 Content-Type: application/json
@@ -85,6 +92,7 @@ Content-Type: application/json
 ```
 
 #### Login
+
 ```http
 POST /api/auth/login
 Content-Type: application/json
@@ -98,6 +106,7 @@ Content-Type: application/json
 ### Battery Passport Service Endpoints
 
 #### Create Passport (Admin only)
+
 ```http
 POST /api/passports
 Authorization: Bearer <jwt-token>
@@ -143,12 +152,14 @@ Content-Type: application/json
 ```
 
 #### Get Passport
+
 ```http
 GET /api/passports/:id
 Authorization: Bearer <jwt-token>
 ```
 
 #### Update Passport (Admin only)
+
 ```http
 PUT /api/passports/:id
 Authorization: Bearer <jwt-token>
@@ -160,6 +171,7 @@ Content-Type: application/json
 ```
 
 #### Delete Passport (Admin only)
+
 ```http
 DELETE /api/passports/:id
 Authorization: Bearer <jwt-token>
@@ -168,6 +180,7 @@ Authorization: Bearer <jwt-token>
 ### Document Service Endpoints
 
 #### Upload Document
+
 ```http
 POST /api/documents/upload
 Authorization: Bearer <jwt-token>
@@ -177,12 +190,14 @@ file: <file>
 ```
 
 #### Get Document Link
+
 ```http
 GET /api/documents/:docId
 Authorization: Bearer <jwt-token>
 ```
 
 #### Update Document Metadata
+
 ```http
 PUT /api/documents/:docId
 Authorization: Bearer <jwt-token>
@@ -194,6 +209,7 @@ Content-Type: application/json
 ```
 
 #### Delete Document
+
 ```http
 DELETE /api/documents/:docId
 Authorization: Bearer <jwt-token>
@@ -202,15 +218,27 @@ Authorization: Bearer <jwt-token>
 ## Development
 
 ### Running Tests
+
 ```bash
 # Run all tests
 npm test
 
 # Run tests for specific service
 cd services/auth-service && npm test
+cd services/document-service && npm test
+cd services/passport-service && npm test
+cd services/notification-service && npm test
 ```
 
+Test files for each service are located in their respective `tests/` directories:
+
+- `services/auth-service/tests/auth.test.js`
+- `services/document-service/tests/document.test.js`
+- `services/passport-service/tests/passport.test.js`
+- `services/notification-service/tests/notification.test.js`
+
 ### Local Development
+
 ```bash
 # Start dependencies only
 docker-compose up -d mongodb kafka zookeeper
@@ -256,4 +284,4 @@ NOTIFICATION_SERVICE_PORT=3004
 
 ## License
 
-MIT License 
+MIT License

@@ -89,34 +89,37 @@ const connectDB = async () => {
 };
 
 // Start server
-const startServer = async () => {
-  try {
-    await connectDB();
-    
-    app.listen(PORT, () => {
-      logger.info(`Auth Service running on port ${PORT}`);
+if (require.main === module) {
+  const startServer = async () => {
+    try {
+      await connectDB();
+      app.listen(PORT, () => {
+        logger.info(`Auth Service running on port ${PORT}`);
+      });
+    } catch (error) {
+      logger.error('Failed to start server:', error);
+      process.exit(1);
+    }
+  };
+
+  // Graceful shutdown
+  process.on('SIGTERM', () => {
+    logger.info('SIGTERM received, shutting down gracefully');
+    mongoose.connection.close(() => {
+      logger.info('MongoDB connection closed');
+      process.exit(0);
     });
-  } catch (error) {
-    logger.error('Failed to start server:', error);
-    process.exit(1);
-  }
-};
-
-// Graceful shutdown
-process.on('SIGTERM', () => {
-  logger.info('SIGTERM received, shutting down gracefully');
-  mongoose.connection.close(() => {
-    logger.info('MongoDB connection closed');
-    process.exit(0);
   });
-});
 
-process.on('SIGINT', () => {
-  logger.info('SIGINT received, shutting down gracefully');
-  mongoose.connection.close(() => {
-    logger.info('MongoDB connection closed');
-    process.exit(0);
+  process.on('SIGINT', () => {
+    logger.info('SIGINT received, shutting down gracefully');
+    mongoose.connection.close(() => {
+      logger.info('MongoDB connection closed');
+      process.exit(0);
+    });
   });
-});
 
-startServer(); 
+  startServer();
+}
+
+module.exports = app;
