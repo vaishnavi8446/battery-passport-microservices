@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const fs = require('fs').promises;
 const path = require('path');
-const logger = require('../../shared/utils/logger');
+const logger = require('../../../shared/utils/logger');
 
 // Create transporter for email sending
 const createTransporter = () => {

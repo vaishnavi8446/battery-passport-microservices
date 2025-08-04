@@ -1,5 +1,5 @@
 const express = require('express');
-const { verifyWithAuthService, requireRole } = require('../../shared/middleware/auth');
+const { verifyWithAuthService, requireRole } = require('../../../shared/middleware/auth');
 const { validatePassportData } = require('../middleware/validation');
 const passportController = require('../controllers/passportController');
 

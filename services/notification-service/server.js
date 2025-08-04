@@ -2,8 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-const logger = require('../shared/utils/logger');
-const { connectConsumer, subscribeToTopic } = require('../shared/utils/kafka');
+const logger = require('../../shared/utils/logger');
+const { connectConsumer, subscribeToTopic } = require('../../shared/utils/kafka');
 const notificationController = require('./controllers/notificationController');
 const notificationRoutes = require('./routes/notificationRoutes');
 

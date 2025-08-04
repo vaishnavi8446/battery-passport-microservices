@@ -24,7 +24,21 @@
   "devDependencies": {
     "concurrently": "^8.2.0"
   },
-  "keywords": ["microservices", "battery", "passport", "nodejs", "express", "mongodb", "kafka"],
+  "keywords": [
+    "microservices",
+    "battery",
+    "passport",
+    "nodejs",
+    "express",
+    "mongodb",
+    "kafka"
+  ],
   "author": "Battery Passport Team",
-  "license": "MIT"
-} 
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "kafkajs": "^2.2.4",
+    "winston": "^3.17.0"
+  }
+}

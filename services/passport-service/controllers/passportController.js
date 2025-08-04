@@ -1,6 +1,6 @@
 const BatteryPassport = require('../models/BatteryPassport');
-const { sendMessage } = require('../../shared/utils/kafka');
-const logger = require('../../shared/utils/logger');
+const { sendMessage } = require('../../../shared/utils/kafka');
+const logger = require('../../../shared/utils/logger');
 
 const createPassport = async (req, res) => {
   try {

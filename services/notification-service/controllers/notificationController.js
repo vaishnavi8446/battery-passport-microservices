@@ -3,7 +3,7 @@ const {
   sendPassportUpdatedNotification, 
   sendPassportDeletedNotification 
 } = require('../utils/emailService');
-const logger = require('../../shared/utils/logger');
+const logger = require('../../../shared/utils/logger');
 
 const handlePassportCreated = async (data) => {
   try {

@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-const logger = require('../shared/utils/logger');
+const logger = require('../../shared/utils/logger');
 
 const documentRoutes = require('./routes/documentRoutes');
 

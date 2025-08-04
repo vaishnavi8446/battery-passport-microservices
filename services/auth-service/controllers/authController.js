@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const logger = require('../../shared/utils/logger');
+const logger = require('../../../shared/utils/logger');
 
 const generateToken = (user) => {
   return jwt.sign(

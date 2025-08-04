@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-const logger = require('../../shared/utils/logger');
+const logger = require('../../../shared/utils/logger');
 
 // Configure AWS S3
 const s3 = new AWS.S3({

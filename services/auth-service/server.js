@@ -5,7 +5,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const swaggerUi = require('swagger-ui-express');
-const logger = require('../shared/utils/logger');
+const logger = require('../../shared/utils/logger');
 
 const authRoutes = require('./routes/authRoutes');
 const swaggerSpecs = require('./config/swagger');

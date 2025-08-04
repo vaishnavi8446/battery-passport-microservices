@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-const logger = require('../shared/utils/logger');
-const { connectProducer } = require('../shared/utils/kafka');
+const logger = require('../../shared/utils/logger');
+const { connectProducer } = require('../../shared/utils/kafka');
 
 const passportRoutes = require('./routes/passportRoutes');
 

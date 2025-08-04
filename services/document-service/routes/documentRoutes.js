@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-const { verifyWithAuthService } = require('../../shared/middleware/auth');
+const { verifyWithAuthService } = require('../../../shared/middleware/auth');
 const documentController = require('../controllers/documentController');
 
 const router = express.Router();

@@ -1,7 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
 const Document = require('../models/Document');
 const { uploadFile, deleteFile, generatePresignedUrl, fileExists } = require('../utils/s3');
-const logger = require('../../shared/utils/logger');
+const logger = require('../../../shared/utils/logger');
 
 const uploadDocument = async (req, res) => {
   try {
